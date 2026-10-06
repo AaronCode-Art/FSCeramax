@@ -1,5 +1,4 @@
-const BACKEND_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
-const API_BASE_URL = `${BACKEND_URL}/api`
+const apiBaseUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '')
 
 interface ApiErrorResponse {
   message?: string
