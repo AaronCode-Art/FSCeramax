@@ -13,11 +13,5 @@ export default defineConfig({
     host: 'localhost',
     port: 5174,
     strictPort: true,
-    proxy: {
-      '/api': {
-        target: 'https://bkceramax.onrender.com',
-        changeOrigin: true,
-      },
-    },
   },
 })
