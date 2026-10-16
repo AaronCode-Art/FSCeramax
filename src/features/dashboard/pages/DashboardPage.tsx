@@ -172,12 +172,12 @@ export function DashboardPage({ role, token }: { role: Role; token: string }) {
       description={puedeVerReporte
         ? "Resumen de ventas e inventario del período seleccionado."
         : puedeVerResumenLogistico
-        ? role === "JEFE_LOGISTICA"
-          ? "Supervisa inventario, solicitudes pendientes y pedidos en operación."
-          : "Consulta tus solicitudes, el estado del inventario y la bandeja de pedidos."
-        : puedeVerResumenVendedor
-        ? "Consulta tus ventas y el estado de los pedidos que registraste."
-        : "Indicadores operativos disponibles según tu perfil."}
+          ? role === "JEFE_LOGISTICA"
+            ? "Supervisa inventario, solicitudes pendientes y pedidos en operación."
+            : "Consulta tus solicitudes, el estado del inventario y la bandeja de pedidos."
+          : puedeVerResumenVendedor
+            ? "Consulta tus ventas y el estado de los pedidos que registraste."
+            : "Indicadores operativos disponibles según tu perfil."}
       action={<>{puedeVerReporte ? <>
         <label className="dashboard-date-field">
           <span>Desde</span>
@@ -222,16 +222,16 @@ export function DashboardPage({ role, token }: { role: Role; token: string }) {
           setCargandoLogistico(true);
           setActualizacionLogistica((current) => current + 1);
         }}
-      ><Icon name="clock" size={16}/>{cargandoLogistico ? "Actualizando…" : "Actualizar"}</button> : null}
-      {puedeVerResumenVendedor && <button
-        className="secondary-button"
-        type="button"
-        disabled={cargandoVendedor}
-        onClick={() => {
-          setCargandoVendedor(true);
-          setActualizacionVendedor((current) => current + 1);
-        }}
-      ><Icon name="clock" size={16}/>{cargandoVendedor ? "Actualizando…" : "Actualizar"}</button>}</>}
+      ><Icon name="clock" size={16} />{cargandoLogistico ? "Actualizando…" : "Actualizar"}</button> : null}
+        {puedeVerResumenVendedor && <button
+          className="secondary-button"
+          type="button"
+          disabled={cargandoVendedor}
+          onClick={() => {
+            setCargandoVendedor(true);
+            setActualizacionVendedor((current) => current + 1);
+          }}
+        ><Icon name="clock" size={16} />{cargandoVendedor ? "Actualizando…" : "Actualizar"}</button>}</>}
     />
 
     {error && <p className="dashboard-export-error" role="alert">{error}</p>}
@@ -328,7 +328,7 @@ export function DashboardPage({ role, token }: { role: Role; token: string }) {
         </article>
         <article className="stat-card">
           <div className="stat-icon" aria-hidden="true">S/</div>
-          <div className="stat-copy"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Pagos aprobados no simulados</small></div>
+          <div className="stat-copy"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Incluye pagos simulados aprobados</small></div>
         </article>
         <article className="stat-card">
           <div className="stat-icon" aria-hidden="true">W</div>

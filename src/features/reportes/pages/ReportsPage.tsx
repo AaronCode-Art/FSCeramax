@@ -148,7 +148,7 @@ export function ReportsPage({ token }: { token: string }) {
     {reporte && <>
       <section className="reports-summary" aria-label="Resumen de ventas">
         <article className="panel reports-metric"><span>Ventas válidas</span><strong>{numero.format(reporte.cantidadVentas)}</strong><small>{mostrarFecha(reporte.desde)} – {mostrarFecha(reporte.hasta)}</small></article>
-        <article className="panel reports-metric"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Pagos aprobados, excluye pedidos cancelados</small></article>
+        <article className="panel reports-metric"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Pagos aprobados, incluidos los simulados; excluye pedidos cancelados</small></article>
         <article className="panel reports-metric"><span>Ventas web</span><strong>{numero.format(reporte.ventasWeb)}</strong><small>Pedidos realizados por canal web</small></article>
         <article className="panel reports-metric"><span>Ventas presenciales</span><strong>{numero.format(reporte.ventasPresenciales)}</strong><small>Pedidos realizados en tienda</small></article>
       </section>
