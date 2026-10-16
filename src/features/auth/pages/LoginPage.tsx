@@ -1,75 +1,91 @@
-import { Boxes, ChartNoAxesCombined, ShieldCheck } from 'lucide-react'
-import type { ReactNode } from 'react'
-import { LoginForm } from '../components/LoginForm'
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { Icon } from "../../../components/ui/Icon";
+import { useAuth } from "../../../hooks/useAuth";
+import { ApiError } from "../../../services/api";
+import "../css/login.css";
 
 export function LoginPage() {
-  return (
-    <main className="grid min-h-screen bg-white lg:grid-cols-[minmax(420px,1fr)_minmax(440px,0.9fr)]">
-      <section className="relative hidden overflow-hidden bg-[#0c3734] px-12 py-10 text-white lg:flex lg:flex-col xl:px-20">
-        <div className="absolute -right-36 -top-40 size-[520px] rounded-full border border-white/10" />
-        <div className="absolute -right-16 -top-20 size-[360px] rounded-full border border-white/10" />
-        <div className="absolute -bottom-52 -left-28 size-[480px] rounded-full border border-white/10" />
+  const [showPassword, setShowPassword] = useState(false);
+  const [notice, setNotice] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
-        <div className="relative z-10 flex items-center gap-3">
-          <span className="grid size-10 place-items-center rounded-xl bg-teal-400 text-lg font-black text-[#0c3734]">C</span>
-          <span>
-            <span className="block text-lg font-bold tracking-wide">CeraMax</span>
-            <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-teal-100/70">Sistema de gestión</span>
-          </span>
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setNotice("");
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") ?? "");
+    const password = String(formData.get("password") ?? "");
+    const remember = formData.get("remember") === "on";
+    try {
+      await signIn(email, password, remember);
+      navigate("/", { replace: true });
+    } catch (error) {
+      setNotice(error instanceof ApiError || error instanceof Error
+        ? error.message
+        : "No se pudo iniciar sesión. Inténtalo nuevamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return <main className="login-page">
+    <section className="login-brand-panel">
+      <div className="login-brand">
+        <img className="brand-logo" src="/ceramax-logo.svg" alt="" />
+        <div><strong>Cerámax</strong><small>Gestión integral</small></div>
+      </div>
+      <div className="login-brand-copy">
+        <span className="login-eyebrow">PLATAFORMA DE GESTIÓN</span>
+        <h1>Todo tu negocio,<br />en un solo lugar.</h1>
+        <p>Ingresa a tu espacio de trabajo para continuar con tus operaciones.</p>
+      </div>
+      <div className="login-decoration" aria-hidden="true">
+        <span /><span /><span /><span /><span />
+      </div>
+      <small className="login-brand-footer">Cerámax · Gestión de operaciones</small>
+    </section>
+
+    <section className="login-form-panel">
+      <div className="login-form-wrap">
+        <div className="login-mobile-brand">
+          <img className="brand-logo" src="/ceramax-logo.svg" alt="" />
+          <div><strong>Cerámax</strong><small>Gestión integral</small></div>
         </div>
+        <span className="login-form-eyebrow">BIENVENIDO</span>
+        <h2>Iniciar sesión</h2>
+        <p className="login-intro">Ingresa tus credenciales para acceder a tu cuenta.</p>
 
-        <div className="relative z-10 my-auto max-w-xl py-16">
-          <span className="inline-flex items-center gap-2 rounded-full border border-teal-100/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-teal-50">
-            <span className="size-1.5 rounded-full bg-teal-300" />
-            Portal interno
-          </span>
-          <h1 className="mt-7 max-w-lg text-4xl font-semibold leading-[1.12] tracking-tight xl:text-5xl">
-            Gestiona cada espacio, desde un solo lugar.
-          </h1>
-          <p className="mt-5 max-w-md text-sm leading-6 text-teal-50/70">
-            Herramientas para coordinar la operación de Cerámax con información clara y accesos según tu equipo.
-          </p>
-
-          <div className="mt-12 grid gap-3 sm:grid-cols-3">
-            <FeatureTile icon={<ChartNoAxesCombined size={17} />} label="Gerencia" />
-            <FeatureTile icon={<Boxes size={17} />} label="Logística" />
-            <FeatureTile icon={<ShieldCheck size={17} />} label="Delivery" />
-          </div>
-        </div>
-
-        <p className="relative z-10 text-xs text-teal-100/50">Cerámax · Portal para colaboradores</p>
-      </section>
-
-      <section className="flex min-h-screen items-center justify-center px-6 py-12 sm:px-10">
-        <div className="w-full max-w-[410px]">
-          <div className="mb-12 flex items-center gap-3 lg:hidden">
-            <span className="grid size-10 place-items-center rounded-xl bg-teal-800 text-lg font-black text-white">C</span>
-            <span>
-              <span className="block text-base font-bold text-slate-900">CeraMax</span>
-              <span className="block text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-500">Sistema de gestión</span>
-            </span>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label htmlFor="login-email">Correo electrónico</label>
+          <div className="login-input-wrap">
+            <Icon name="users" size={18} />
+            <input id="login-email" name="email" type="email" autoComplete="username" placeholder="nombre@empresa.com" required disabled={isSubmitting} />
           </div>
 
-          <div className="mb-8 inline-flex size-12 items-center justify-center rounded-xl bg-teal-50 text-teal-800">
-            <ShieldCheck size={23} strokeWidth={1.8} />
+          <div className="login-password-heading">
+            <label htmlFor="login-password">Contraseña</label>
+            <button type="button" className="login-text-button" onClick={() => setNotice("La recuperación de contraseña no está habilitada. Contacta con administración.")}>¿Olvidaste tu contraseña?</button>
           </div>
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-800">Bienvenido a Cerámax</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Inicia sesión</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-500">
-            Ingresa con tu cuenta de personal para continuar al sistema.
-          </p>
-          <LoginForm />
-        </div>
-      </section>
-    </main>
-  )
-}
-
-function FeatureTile({ icon, label }: { icon: ReactNode; label: string }) {
-  return (
-    <div className="flex items-center gap-2.5 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-3 text-xs font-medium text-teal-50/90">
-      <span className="text-teal-300">{icon}</span>
-      {label}
-    </div>
-  )
+          <div className="login-input-wrap">
+            <Icon name="lock" size={18} />
+            <input id="login-password" name="password" type={showPassword ? "text" : "password"} autoComplete="current-password" placeholder="Ingresa tu contraseña" required disabled={isSubmitting} />
+            <button type="button" className="login-password-toggle" aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"} onClick={() => setShowPassword((visible) => !visible)} disabled={isSubmitting}>{showPassword ? "Ocultar" : "Mostrar"}</button>
+          </div>
+          <label className="login-remember"><input type="checkbox" name="remember" disabled={isSubmitting} />Mantener sesión iniciada</label>
+          <button className="primary-button login-submit" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Verificando..." : "Iniciar sesión"}
+            {!isSubmitting && <Icon name="arrow" size={17} />}
+          </button>
+          {notice && <p className="login-notice" role="status">{notice}</p>}
+        </form>
+        <div className="login-security-note"><Icon name="alert" size={15} /><span>Acceso seguro para usuarios autorizados.</span></div>
+        <p className="login-connection-note">Acceso exclusivo para personal Cerámax</p>
+      </div>
+    </section>
+  </main>;
 }

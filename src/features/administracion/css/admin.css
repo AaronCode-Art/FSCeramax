@@ -1,0 +1,41 @@
+.admin-filters {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.admin-filter-select {
+    min-width: 130px;
+    display: grid;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.admin-filter-select select {
+    width: 100%;
+    min-height: 38px;
+    padding: 0 9px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 10px;
+}
+
+@media (max-width: 800px) {
+    .admin-filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-filters .category-search {
+        width: 100%;
+    }
+
+    .admin-filter-select {
+        min-width: 0;
+    }
+}

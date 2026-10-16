@@ -1,0 +1,426 @@
+.orders-panel {
+  overflow: hidden;
+}
+
+.orders-panel .table-scroll {
+  min-height: 130px;
+}
+
+.orders-route-summary {
+  margin-bottom: 17px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.orders-route-metric {
+  min-width: 0;
+  padding: 15px 17px;
+  display: grid;
+  gap: 5px;
+}
+
+.orders-route-metric span,
+.orders-route-metric small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-route-metric strong {
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.orders-route-list {
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.orders-route-stop {
+  min-width: 0;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+  gap: 13px;
+}
+
+.orders-route-stop-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--green-800);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.orders-route-stop-content {
+  min-width: 0;
+}
+
+.orders-route-stop-header,
+.orders-route-stop-header > div,
+.orders-route-stop-footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.orders-route-stop-header,
+.orders-route-stop-footer {
+  justify-content: space-between;
+}
+
+.orders-route-stop-header > div {
+  flex-wrap: wrap;
+}
+
+.orders-route-stop-header time {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.orders-route-order-code {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.orders-route-stop-content h3 {
+  margin: 12px 0 3px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.orders-route-phone,
+.orders-route-map-link {
+  color: var(--green-800);
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.orders-route-phone:hover,
+.orders-route-map-link:hover {
+  text-decoration: underline;
+}
+
+.orders-route-address {
+  margin: 9px 0 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.orders-route-stop-footer {
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.orders-route-stop-footer > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-route-stop-footer .primary-button {
+  min-height: 34px;
+  padding: 0 11px;
+  font-size: 10px;
+}
+
+.orders-detail-button {
+  padding: 7px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.orders-status {
+  padding: 4px 8px;
+  display: inline-flex;
+  color: #405f8a;
+  background: #eaf0fa;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.orders-status-completada {
+  color: #246342;
+  background: #e5f3e9;
+}
+
+.orders-status-cancelado,
+.orders-status-no_entregada {
+  color: #8b2925;
+  background: #fff1ef;
+}
+
+.orders-status-en_ruta,
+.orders-status-en_camino {
+  color: #805322;
+  background: #fbf0d9;
+}
+
+.orders-status-listo_despacho,
+.orders-status-listo_para_recoger {
+  color: #4e477e;
+  background: #efedfa;
+}
+
+.orders-error {
+  margin-top: 0;
+}
+
+.orders-pagination {
+  min-height: 60px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.orders-pagination span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-detail-modal {
+  width: min(720px, 100%);
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-detail-modal .category-modal-heading {
+  flex: 0 0 auto;
+}
+
+.orders-detail-content {
+  min-height: 0;
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.orders-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.orders-detail-grid > div {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.orders-detail-grid > div > span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-detail-grid > div > strong {
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.orders-detail-address {
+  grid-column: 1 / -1;
+}
+
+.orders-lines-heading {
+  margin-top: 20px;
+  padding-bottom: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.orders-lines-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.orders-lines-heading span {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.orders-line-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orders-line-list li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.orders-line-list li > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.orders-line-list strong {
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.orders-line-list small,
+.orders-detail-muted {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-line-list li > strong {
+  white-space: nowrap;
+}
+
+.orders-action-box {
+  margin-top: 16px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.orders-action-box label {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.orders-action-box select {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 9px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.orders-delivery-assigned {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.orders-detail-modal .category-modal-actions {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+:root[data-theme="dark"] .orders-status-completada {
+  color: #b8e0c6;
+  background: #243d30;
+}
+
+:root[data-theme="dark"] .orders-status-cancelado,
+:root[data-theme="dark"] .orders-status-no_entregada {
+  color: #ffc1b9;
+  background: #482b29;
+}
+
+:root[data-theme="dark"] .orders-status-en_ruta,
+:root[data-theme="dark"] .orders-status-en_camino {
+  color: #f1d29b;
+  background: #47391f;
+}
+
+@media (max-width: 620px) {
+  .orders-route-summary {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .orders-route-metric {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .orders-route-metric small {
+    grid-column: 1 / -1;
+  }
+
+  .orders-route-stop {
+    padding: 12px;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .orders-route-stop-number {
+    width: 27px;
+    height: 27px;
+  }
+
+  .orders-route-stop-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .orders-route-stop-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .orders-route-stop-footer .primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .orders-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orders-detail-address {
+    grid-column: auto;
+  }
+
+  .orders-action-box {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .orders-action-box .primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .orders-pagination {
+    justify-content: center;
+  }
+
+  .orders-detail-modal {
+    max-height: calc(100vh - 24px);
+  }
+}
