@@ -328,7 +328,7 @@ export function DashboardPage({ role, token }: { role: Role; token: string }) {
         </article>
         <article className="stat-card">
           <div className="stat-icon" aria-hidden="true">S/</div>
-          <div className="stat-copy"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Pagos aprobados no simulados</small></div>
+          <div className="stat-copy"><span>Ingresos totales</span><strong>{moneda.format(reporte.ingresosTotales)}</strong><small>Incluye pagos simulados aprobados</small></div>
         </article>
         <article className="stat-card">
           <div className="stat-icon" aria-hidden="true">W</div>
