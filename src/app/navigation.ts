@@ -22,6 +22,7 @@ export const navigation: Record<Role, { label: string; icon: IconName }[]> = {
     { label: "Inventario", icon: "box" }, { label: "Solicitudes", icon: "file" },
     { label: "Traslados", icon: "truck" }, { label: "Movimientos", icon: "clock" },
     { label: "Productos", icon: "store" }, { label: "Categorías", icon: "box" },
+    { label: "Cupones", icon: "store" },
     { label: "Galería de imágenes", icon: "file" }, { label: "Sucursales", icon: "store" },
     { label: "Almacenes", icon: "truck" },
     { label: "Usuarios", icon: "users" }, { label: "Clientes", icon: "users" },
@@ -33,6 +34,7 @@ export const navigation: Record<Role, { label: string; icon: IconName }[]> = {
     { label: "Inventario", icon: "box" }, { label: "Solicitudes", icon: "file" },
     { label: "Traslados", icon: "truck" }, { label: "Movimientos", icon: "clock" },
     { label: "Productos", icon: "store" }, { label: "Categorías", icon: "box" },
+    { label: "Cupones", icon: "store" },
     { label: "Galería de imágenes", icon: "file" }, { label: "Chat interno", icon: "chat" },
   ],
   LOGISTICA: [

@@ -8,6 +8,7 @@ import { AlmacenesPage } from "./features/almacenes/pages/AlmacenesPage";
 import { ChatInternoPage } from "./features/chat-interno/pages/ChatInternoPage";
 import { ClientsPage } from "./features/cliente/pages/ClientsPage";
 import { CategoriesPage } from "./features/categoria/pages/CategoriesPage";
+import { CuponesPage } from "./features/cupones/pages/CuponesPage";
 import { SettingsPage } from "./features/configuracion/pages/SettingsPage";
 import { LoginPage } from "./features/auth/pages/LoginPage";
 import { GaleriaPage } from "./features/galeria/pages/GaleriaPage";
@@ -65,6 +66,7 @@ function PageContent({ page, role, session }: { page: string; role: Role; sessio
   }
   if (page === "Productos") return <ProductsPage />;
   if (page === "Categorías") return <CategoriesPage />;
+  if (page === "Cupones") return <CuponesPage />;
   if (page === "Galería de imágenes") return <GaleriaPage />;
   if (page === "Sucursales") return <SucursalesPage />;
   if (page === "Almacenes") return <AlmacenesPage />;
